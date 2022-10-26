@@ -22,4 +22,4 @@ spec:
  - name: my-volume
    hostPath:
     path: /cache
-    type: Directory
+    type: DirectoryOrCreate
