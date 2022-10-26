@@ -9,6 +9,6 @@ spec:
    ports: 
    - containerPort: 80
  - name: bear
-   image: supergiantkir/animals:bear
+   image: yanivomc/sprint-music:latest
    ports: 
-   - containerPort: 80
+   - containerPort: 8080
