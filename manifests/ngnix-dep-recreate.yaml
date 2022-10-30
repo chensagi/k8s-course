@@ -1,14 +1,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment-test-reg
+  name: nginx-deployment-test-recreate
 spec:
   selector:
     matchLabels:
       app: nginx
   replicas: 2
-  #strategy:
-    #type: Recreate
+  strategy:
+    type: Recreate
   template: 
     metadata:
       labels:
