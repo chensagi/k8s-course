@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: frontend
+  labels:
+    app: guestbook
+    tier: frontend
+spec:
+  # modify replicas according to your case
+  replicas: 3
+  selector:
+    matchLabels:
+      tier: frontend
+  template:
+    metadata: 
+     name: apps 
+    spec:
+     containers: 
+     - name: app1
+       image: supergiantkir/animals:bear
+       ports: 
+       - containerPort: 80
+       volumeMounts:
+       - mountPath: /storage/app1
+         name: app-storage
+     - name: app2
+       image: yanivomc/spring-music:latest
+       ports: 
+       - containerPort: 3000
+       volumeMounts:
+       - mountPath: /storage/app2
+         name: app-storage
+     volumes:
+       - name: app-storage
+         hostPath:
+           path: /tmp/files
+           type: DirectoryOrCreate
