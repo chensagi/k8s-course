@@ -17,7 +17,7 @@ spec:
       tier: frontend
     spec:
      nodeSelector:
-      env: prod
+      beta.kubernetes.io/arch: amd64
      containers: 
      - name: app1
        image: supergiantkir/animals:bear
