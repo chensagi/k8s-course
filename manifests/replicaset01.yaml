@@ -16,6 +16,8 @@ spec:
      labels:
       tier: frontend
     spec:
+     nodeSelector:
+      env: prod
      containers: 
      - name: app1
        image: supergiantkir/animals:bear
