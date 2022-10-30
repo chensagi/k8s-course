@@ -7,8 +7,10 @@ spec:
     matchLabels:
       app: nginx
   replicas: 2
-  #strategy:
-    #type: Recreate
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
   template: 
     metadata:
       labels:
