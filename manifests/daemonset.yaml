@@ -1,0 +1,29 @@
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  namespace: kube-system
+  name: node-custom-setup
+  labels:
+    k8s-app: node-custom-setup
+  annotations:
+    command: &cmd apt-get update -qy && apt-get install -qy open-iscsi xfsprogs
+spec:
+  selector:
+    matchLabels:
+      k8s-app: node-custom-setup
+  template:
+    metadata:
+      labels:
+        k8s-app: node-custom-setup
+    spec:
+      containers:
+      - name: wait
+        image: alpine:latest
+        command:
+          - sleep
+          - 10000
+      hostPID: true
+      hostNetwork: true
+  updateStrategy:
+    type: RollingUpdate
