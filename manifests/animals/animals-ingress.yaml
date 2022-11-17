@@ -1,26 +1,46 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: ingress
+  name: ingress-canary-v2
   annotations:
-   nginx.ingress.kubernetes.io/rewrite-target: /$2 # We strip the prefix before it passes to our backend or our app wont load as it will get route /bears instead /
+    nginx.ingress.kubernetes.io/canary: "true"
+    nginx.ingress.kubernetes.io/canary-weight: 30
+   #nginx.ingress.kubernetes.io/rewrite-target: /$2 # We strip the prefix before it passes to our backend or our app wont load as it will get route /bears instead /
+
 
 spec:
   ingressClassName: nginx
   rules:
   - http:
       paths:
-      - path: /bear(/|$)(.*)
-        pathType: Prefix
-        backend:
-          service:
-             name: animals-service-1
-             port:
-                number: 80
-      - path: /moose(/|$)(.*)
+      - path: /
         pathType: Prefix
         backend:
           service:
              name: animals-service-2
+             port:
+                number: 80
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-canary-v1
+  annotations:
+    nginx.ingress.kubernetes.io/canary: "true"
+    nginx.ingress.kubernetes.io/canary-weight: 70
+   #nginx.ingress.kubernetes.io/rewrite-target: /$2 # We strip the prefix before it passes to our backend or our app wont load as it will get route /bears instead /
+
+spec:
+  ingressClassName: nginx
+  rules:
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+             name: animals-service-1
              port:
                 number: 80
