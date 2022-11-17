@@ -19,3 +19,5 @@ spec:
         image: nginx:latest
         ports:
         - containerPort: 80
+
+# kubectl expose deployment nginx-deployment-1 --port=80 --target-port=80
