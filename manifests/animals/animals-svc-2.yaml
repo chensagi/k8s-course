@@ -4,9 +4,8 @@ metadata:
   name: animals-service
 spec:
   selector:
-    app: animals-app
+    app: animals-app-2
   ports:
     - protocol: TCP
       port: 80
       targetPort: 80
-  type: LoadBalancer

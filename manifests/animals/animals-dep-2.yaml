@@ -5,14 +5,14 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: animals-app
+      app: animals-app-2
   replicas: 2
   strategy:
     type: Recreate
   template: 
     metadata:
       labels:
-        app: animals-app
+        app: animals-app-2
     spec:
       containers:
       - name: animal
