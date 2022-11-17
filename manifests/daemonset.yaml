@@ -22,7 +22,7 @@ spec:
         image: alpine:latest
         command:
           - sleep
-          - 10000
+          - '10000'
       hostPID: true
       hostNetwork: true
   updateStrategy:
