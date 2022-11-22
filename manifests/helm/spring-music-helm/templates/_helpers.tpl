@@ -9,5 +9,3 @@ date: {{ now | htmlDate }}
 name: {{ .Release.Name }}
 {{- end }}
 
-
-{{{- end }}
