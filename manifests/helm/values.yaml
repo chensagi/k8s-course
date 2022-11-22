@@ -24,6 +24,10 @@ serviceAccount:
   name: ""
 
 podAnnotations: {}
+pods:
+  image: yanivomc/spring-music
+  tag: latest
+  replica: 2
 
 podSecurityContext: {}
   # fsGroup: 2000

@@ -5,12 +5,14 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: music
+        {{- include "spring.labels" . | nindent 4 }}
+      #app: music
   replicas: {{ .Values.deployment.replicas }}  #from values
   template:
     metadata:
       labels:
-        app: music
+        {{- include "spring.labels" . | nindent 4 }}
+        #app: music
     spec:
       containers:
       - name: {{ .Values.deployment.container1.name }} #spring-music from values

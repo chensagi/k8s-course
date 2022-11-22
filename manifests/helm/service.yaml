@@ -4,7 +4,8 @@ metadata:
   name: {{.Release.Name}}-service #from RELEASE NAME
 spec:
   selector:
-    app: music
+    {{- include "spring.labels" . | nindent 2 }}
+    #app: music
   type: {{ .Values.service.type | default "NodePort" }}  #from values | DEFAULT TO NODEPORT
   ports:
   - name: http
