@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{.Release.Name}}-deployment #from RELEASE NAME
+spec:
+  selector:
+    matchLabels:
+      app: music
+  replicas: {{ .Values.deployment.replicas }}  #from values
+  template:
+    metadata:
+      labels:
+        app: music
+    spec:
+      containers:
+      - name: {{ .Values.deployment.container1.name }} #spring-music from values
+        image: {{ .Values.deployment.container1.image }} #yanivomc/spring-music:latest #from values
+        ports:
+        - containerPort: 8080
