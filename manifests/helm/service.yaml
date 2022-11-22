@@ -1,14 +1,13 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: {{.Release.Name}}-service #from RELEASE NAME
+  name: {{ .Values.deployment.name }}-svc
 spec:
   selector:
-    {{- include "spring.labels" . | nindent 2 }}
-    #app: music
-  type: {{ .Values.service.type | default "NodePort" }}  #from values | DEFAULT TO NODEPORT
+    {{- include "spring.labels" .| nindent 4 }}
+  type: {{ .Values.service.type | default "NodePort" }}
   ports:
   - name: http
     protocol: TCP
-    port: {{ .Values.service.port }}
+    port:  80
     targetPort: 8080

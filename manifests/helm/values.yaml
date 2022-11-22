@@ -40,15 +40,12 @@ securityContext: {}
   # runAsNonRoot: true
   # runAsUser: 1000
 
-service:
-  type: LoadBalancer
-  port: 80
-
 deployment:
   replicas: 1
-  container1:
-    name: spring-muse
-    image: yanivomc/spring-music:latest
+  name: spring-music
+  image: "yanivomc/spring-music:latest"
+service:
+    type: NodePort
 
 
 
